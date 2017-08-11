@@ -4,6 +4,7 @@ import subprocess
 from datetime import date
 import sys
 import urllib
+import platform
 
 def dl(mainhost, filename):
 	print("从这里下载hosts文件:" + mainhost)
@@ -30,7 +31,14 @@ def dl(mainhost, filename):
 				
 def moveHost(frompath):
 	print("从这里复制文件到hosts:"+frompath)
-	topath = "/etc/hosts"
+	sysver = platform.system()
+	sysver = sysver.lower() 
+	if( sysver == "windows"):
+		topath = "C:\Windows\system32\dirvers\etc\hosts"
+	else:
+		topath = "/etc/hosts"
+
+	
 
 	# 分析hosts 文件
 	# 取出自定义的host 和 ip
